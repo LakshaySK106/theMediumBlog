@@ -3,6 +3,11 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { MdMarkEmailUnread } from 'react-icons/md'
 import lakshay from '../public/lakshay.jpg'
 import jsLogo from '../public/jsLogo.png'
+import eng from '../public/eng.jpg'
+import newYork from '../public/newYork.jpeg'
+import bmw from '../public/BMW_M5.png'
+import roger from '../public/TheRoger.jpeg'
+import bbc from '../public/bbc.jpeg'
 
 const styles = {
     wrapper: 'h-screen min-w-[10rem] max-w-[30rem] flex-[1.2] p-[2rem]',
@@ -17,10 +22,18 @@ const styles = {
     actionButton: 'bg-[#1A8917] text-white rounded-full px-[.6rem] py-[.4rem] text-sm',
     recAuthProfile: 'rounded-full overflow-hidden h-[1.4rem] w-[1.4rem]',
     recommendationAuthorName: 'text-sm',
-    recommendationAuthorContainer: 'flex items-center gap-[.6rem]'
+    recommendationAuthorContainer: 'flex items-center gap-[.6rem]',
+    recommendationTitle: 'font-bold text-[.9rem]',
+    recommendationThumbnailContainer: 'flex flex-1 items-center justify-center h-[4rem] w-[4rem]',
+    recommendationThumbnail: 'h-[6rem] w-[6rem] overflow-hidden object-cover',
+    arctileContentWrapper: 'flex items-center justify-between cursor-pointer my-[1rem]',
+    articleContent: 'flex-[4]',
+    title: 'font-bold',
+    mybr: 'text-[#787878] mt-4 mb-2',
+      
 }
 
-const Recommendations = () =>{
+const Recommendations = ({author}) =>{
   return (
     <div className={styles.wrapper}>
         <div className={styles.accentedButton}>Get Unilimited Access</div>
@@ -49,26 +62,64 @@ const Recommendations = () =>{
         </div>
         <div className={styles.recommendationContainer}>
             <div className={styles.title}>More from Medium</div>
-            <div className={styles.articleConatiner}>
+            <hr className={styles.mybr}/>
+            <div className={styles.articleContainer}>
+                {recommendedPosts.map(post=>(
+                <div className={styles.arctileContentWrapper}>
+                    <div className={styles.articleContent}>
+
                 <div className={styles.recommendationAuthorContainer}>
                     <div className={styles.recAuthProfile}>
                     <Image
-                        src={lakshay}
+                        src={post.author.image}
                         height={100}
                         width={100}
                     /> 
                 </div>
-                    <div className={styles.recommendationAuthorName}>Lakshay</div>
+                    <div className={styles.recommendationAuthorName}>{post.author.name}</div>
                 </div>
+                    <div className={styles.recommendationTitle}>{post.title}</div>
+                </div>
+                <div className={styles.recommendationThumbnailContainer}></div>
                     <Image
-                        src={jsLogo}
-                        height={100}
-                        width={100}
+                        className={styles.recommendationThumbnail}
+                        src={post.image}
+                        height={110}
+                        width={110}
                     />
             </div>
+                ))}
+        </div>
         </div>
     </div>
   )
 }
 
 export default Recommendations
+
+const recommendedPosts = [
+    {
+        title: 'India vs England: Jos Buttler, Alex Hales shine as England crush India to set up final clash with Pakistan',
+        image: eng,
+        author:{
+            name: 'NewYork Times',
+            image: newYork
+        }
+    },
+    {
+        title: 'The least-expensive 2023 BMW M5 is the 2023 BMW M5 4dr Sedan AWD (4.4L 8cyl Turbo 8A).',
+        image: bmw,
+        author:{
+            name: 'Lakshay',
+            image: lakshay
+        }
+    },
+    {
+        title: 'It had been a week since Roger Federer announced his retirement from the sport.',
+        image: roger,
+        author:{
+            name: 'BBC',
+            image: bbc
+        }
+    },
+]
