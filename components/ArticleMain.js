@@ -29,7 +29,8 @@ const styles ={
     articleText: 'font-sans text-[1.2rem] text-[#292929]',
 }
 
-const ArticleMain =() => {
+const ArticleMain =({post, author}) => {
+    // console.log(post, author, '🎶')
   return (
     <div className={styles.wrapper}>
         <div className={styles.content}>
@@ -44,9 +45,9 @@ const ArticleMain =() => {
                         />
                     </div>
                     <div className={styles.column}>
-                        <div>Lakshay</div>
+                        <div>{author?.data?.name}</div>
                         <div className={styles.postDetails}>
-                            <span>November 7 • 8 min read •</span><span className={styles.listenButton}>
+                            <span>{new Date(post.data?.postedOn).toLocaleString('en-US', {day: 'numeric', month:'short'})} • {post.data?.postLength} min read •</span><span className={styles.listenButton}>
                                 <AiFillPlayCircle/> Listen
                             </span>
                         </div>
@@ -70,15 +71,16 @@ const ArticleMain =() => {
                         src={Log}
                     />
                 </div>
-                <h1 className={styles.title}>Next.js -The next big thing! 5 New Killer Features of Next.js 12</h1>
+                <h1 className={styles.title}>{post?.data?.title}</h1>
                 <h4 className={styles.subtitle}>
                     <div className={styles.subb}>
-                        Lakshay, November 7, 2022
+                        {author?.data?.name} | {' '}
+                        {new Date(post.data?.postedOn).toLocaleString('en-US', {day: 'numeric', month:'short', year:'numeric'})}
                     </div>
-                    <div>Top highlights of a game-changing release</div>
+                    <div>{post?.data?.brief}</div>
                 </h4>
                 <div className={styles.articleText}>
-                    The Next.Js Framework Was Created By Vercel In 2016. It Started As A Server-Side Rendering-Focused Framework. It Has Gradually Evolved Since. Now It Is A Complete Suite To Build Blazing Fast React Apps. It Is Developer-Friendly And Intuitive To Use. Here Are Its Strongest Features: Page-Based Routing, Hybrid Pages, Environment, Variables, Static File Serving, Image Optimization, Analytics, Internationalization, Great Documentation.The Next.Js Framework Was Created By Vercel In 2016. It Started As A Server-Side Rendering-Focused Framework. It Has Gradually Evolved Since. Now It Is A Complete Suite To Build Blazing Fast React Apps. It Is Developer-Friendly And Intuitive To Use. Here Are Its Strongest Features: Page-Based Routing, Hybrid Pages, Environment, Variables, Static File Serving, Image Optimization, Analytics, Internationalization, Great Documentation.
+                    {post?.data?.body}
                 </div>
             </div>
         </div>
