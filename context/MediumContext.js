@@ -12,7 +12,7 @@ const MediumProvider = ({children})=>{
     useEffect(() => {
         const getUsers = async () => {
             const querySnapshot = await getDocs(collection(db, 'users'))
-            setUsers (querySnapshot.docs.map(doc => {
+            setUsers(querySnapshot.docs.map(doc => {
                 return {
                     id: doc.id,
                     data: {
@@ -28,7 +28,7 @@ const MediumProvider = ({children})=>{
         const getPosts = async () => {
             const querySnapshot = await getDocs(collection(db, 'articles'))
             querySnapshot.docs.map(doc => console.log(doc.data()))
-            setPosts (querySnapshot.docs.map(doc => {
+            setPosts(querySnapshot.docs.map(doc => {
                 return {
                     id: doc.id,
                     data: {
@@ -39,7 +39,7 @@ const MediumProvider = ({children})=>{
                         bannerImage: doc.data().bannerImage,
                         title: doc.data().title,
                         // comments: doc.data().comments,
-                        postedOn: doc.data().postedOn.toDate(),
+                        postedOn: doc.data().postedOn,
                         author: doc.data().author,
                     }
                 }
@@ -49,7 +49,7 @@ const MediumProvider = ({children})=>{
     }, [])
     
     const addUserToFirebase = async user => {
-        await setDoc(doc(db, 'users', currentUser.email), {
+        await setDoc(doc(db, 'users', user.email), {
             email: user.email,
             name: user.displayName,
             imageurl: user.photoURL,
@@ -62,7 +62,7 @@ const MediumProvider = ({children})=>{
         const user = userData.user
         console.log(user, '💀✅')
         setCurrentUser(user)
-        addUserToFirebase(currentUser)
+        addUserToFirebase(user)
     }
 
     return (
