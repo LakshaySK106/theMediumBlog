@@ -10,8 +10,8 @@ import { BiBookmarks } from 'react-icons/bi'
 import { FiMoreHorizontal } from 'react-icons/fi'
 
 const styles ={
-    wrapper: 'flex items-center justify-center flex-[3] border-l border-r',
-    content: 'h-screen w-full p-[2rem]',
+    wrapper: 'overflow-auto flex items-center justify-center flex-[3] border-l border-r',
+    content: 'h-screen w-full p-[2.6rem]',
     postHeaderContainer: 'flex justify-between items-center mt-[2.2rem] mb-[1.2rem]',
     authorContainer: 'flex gap-[1rem]',
     authorProfileImageContainer: 'h-[3rem] w-[3rem] grid center rounded-full overflow-hidden',
@@ -20,17 +20,17 @@ const styles ={
     listenButton: 'flex items-center gap-[.2rem] text-[#1A8917]',
     socials: 'flex gap-[1rem] text-[#787878] cursor-pointer',
     space: 'w-[.5rem] ',
-    bannerContainer: 'h-[18rem] w-full grid center overflow-hidden mb-[2rem]', 
-    articleMainContainer: 'flex flex-col gap-[1rem]',
-    image: 'object-cover',
+    bannerContainer: 'h-[25rem] w-full grid center overflow-hidden mb-[2rem]', 
+    articleMainContainer: 'overflow-scroll flex flex-col gap-[1rem]',
+    image: 'object-cover w-full',
     title: 'text-3xl font-bold',
-    subtitle: 'font-sans text-[1.4rem] text-[#292929]',
+    subtitle: 'font-sans text-[1.1rem] text-[#787878]',
     subb: 'text-[#787878]',
     articleText: 'font-sans text-[1.2rem] text-[#292929]',
 }
 
 const ArticleMain =({post, author}) => {
-    // console.log(post, author, '🎶')
+
   return (
     <div className={styles.wrapper}>
         <div className={styles.content}>
@@ -39,7 +39,7 @@ const ArticleMain =({post, author}) => {
                     <div className={styles.authorProfileImageContainer}>
                         <Image
                         className={'object-cover'}
-                            src={lakshay}
+                            src={`https://res.cloudinary.com/demo/image/fetch/${author?.data?.imageurl}`}
                             height={100}
                             width={100}
                         />
@@ -65,20 +65,19 @@ const ArticleMain =({post, author}) => {
                 </div>
             </div>
             <div className={styles.articleMainContainer}>
+                <h1 className={styles.title}>{post?.data?.title}</h1>
+                <hr className="text-[#787878]" />
+                <h4 className={styles.subtitle}>
+                    <div>{post?.data?.brief}</div>
+                </h4>
                 <div className={styles.bannerContainer}>
                     <Image
                         className={styles.image}
-                        src={Log}
+                        src={`https://res.cloudinary.com/demo/image/fetch/${post.data?.bannerImage}`}
+                        width={100}
+                        height={100}
                     />
                 </div>
-                <h1 className={styles.title}>{post?.data?.title}</h1>
-                <h4 className={styles.subtitle}>
-                    <div className={styles.subb}>
-                        {author?.data?.name} | {' '}
-                        {new Date(post.data?.postedOn).toLocaleString('en-US', {day: 'numeric', month:'short', year:'numeric'})}
-                    </div>
-                    <div>{post?.data?.brief}</div>
-                </h4>
                 <div className={styles.articleText}>
                     {post?.data?.body}
                 </div>

@@ -10,15 +10,15 @@ import lakshay from '../public/lakshay.jpg'
 
 const styles = {
     logoContainer: 'cursor-pointer',
-    wrapper: 'w-[5rem] h-screen flex flex-col justify-between items-center p-[1rem]',
-    iconsContainer: 'flex-1 flex flex-col justify-center gap-[1.4rem] text-2xl text-[#787878]',
+    wrapper: 'overscroll-contain w-[5rem] h-screen flex flex-col justify-between items-center p-[1rem]',
+    iconsContainer: 'flex-1 flex flex-col justify-center gap-[1.4rem] text-xl text-[#787878]',
     divider: 'border-b',
     profileImage: 'object-cover',
     profileImageContainer: 'w-[2.5rem] h-[2.5rem] rounded-full overflow-hidden place-items-center',
 
 }
 
-const ReadersNav = () => {
+const ReadersNav = ({post, author}) => {
   return (
     <div className={styles.wrapper}>
         <Link href='/'>
@@ -39,7 +39,9 @@ const ReadersNav = () => {
         <div className={styles.profileImageContainer}>
             <Image 
                 className={styles.profileImage}
-                src={lakshay}
+                src={`https://res.cloudinary.com/demo/image/fetch/${author?.data?.imageurl}`}
+                width={100}
+                height={100}
             />
         </div>
     </div>

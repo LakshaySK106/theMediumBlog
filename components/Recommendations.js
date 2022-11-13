@@ -8,9 +8,10 @@ import newYork from '../public/newYork.jpeg'
 import bmw from '../public/BMW_M5.png'
 import roger from '../public/TheRoger.jpeg'
 import bbc from '../public/bbc.jpeg'
+import { useState } from "react"
 
 const styles = {
-    wrapper: 'h-screen min-w-[10rem] max-w-[30rem] flex-[1.2] p-[2rem]',
+    wrapper: 'overflow-auto h-screen min-w-[10rem] max-w-[30rem] flex-[1.2] p-[2rem]',
     accentedButton: 'flex items-center justify-center text-sm bg-black text-white my-[2rem] py-[.6rem] rounded-full',
     searchBar: 'flex items-center gap-[.6rem] h-[2.6rem] border px-[1rem] rounded-full',
     searchInput: 'border-none outline-none bg-none w-full',
@@ -33,7 +34,8 @@ const styles = {
       
 }
 
-const Recommendations = ({author}) =>{
+const Recommendations = ({post, author}) =>{
+    const [buttonText, setButtonText] = useState("Follow")
   return (
     <div className={styles.wrapper}>
         <div className={styles.accentedButton}>Get Unilimited Access</div>
@@ -48,15 +50,15 @@ const Recommendations = ({author}) =>{
         <div className={styles.authorContainer}>
             <div className={styles.authorProfileImageContainer}>
                 <Image
-                src={lakshay}
+                src={`https://res.cloudinary.com/demo/image/fetch/${author?.data?.imageurl}`}
                 width={100}
                 height={100}
                 />
             </div>
-            <div className={styles.authorName}>Lakshay</div>
-            <div className={styles.authorFollowing}>1M followers</div>
+            <div className={styles.authorName}>{author?.data?.name}</div>
+            <div className={styles.authorFollowing}>{author?.data?.followerCount} followers</div>
             <div className={styles.authorActions}>
-                <button className={styles.actionButton}>Follow</button>
+                <button onClick={() => buttonText==="Follow"?setButtonText("Following"):setButtonText("Follow")} className={styles.actionButton}>{buttonText}</button>
                 <button className={styles.actionButton}><MdMarkEmailUnread/></button>
             </div>
         </div>

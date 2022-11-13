@@ -31,10 +31,14 @@ const Post = () => {
 
     return(
         <div className={styles.content}>
-            <ReadersNav/>
-            <ArticleMain post={post} author={author}/>
-            <Recommendations/>
-
+            
+                <ReadersNav post={post} author={author}/>
+            
+            
+                <ArticleMain post={post} author={author}/>
+            
+            
+                <Recommendations post={post} author={author}/>
         </div>
     )
 }

@@ -21,10 +21,10 @@ const {currentUser} = useContext(MediumContext)
     const [postLength, setPostLength] = useState('')
     const [bannerImage, setBannerImage] = useState('')
     const [body, setBody] = useState('')
-
+    
     const addPostToFirebase = async event =>{
-        event.preventDefault()
-
+        // event.preventDefault()
+        
         await addDoc(collection(db, 'articles'), {
             bannerImage: bannerImage,
             body: body,
@@ -35,6 +35,7 @@ const {currentUser} = useContext(MediumContext)
             title: title,
             author: currentUser.email,
         })
+        window.location.reload(false);
     }
 
   return (

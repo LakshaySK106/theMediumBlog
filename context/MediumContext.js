@@ -60,7 +60,6 @@ const MediumProvider = ({children})=>{
     const handleUserAuth = async() => {
         const userData = await signInWithPopup(auth, provider)
         const user = userData.user
-        console.log(user, '💀✅')
         setCurrentUser(user)
         addUserToFirebase(user)
     }
