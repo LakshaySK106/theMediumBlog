@@ -9,7 +9,7 @@ import { getFirestore } from 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDl7rWiz8rMw2KNxiDEF6LataWXGDbuR4w",
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
   authDomain: "themediumblog-ed3bb.firebaseapp.com",
   projectId: "themediumblog-ed3bb",
   storageBucket: "themediumblog-ed3bb.appspot.com",
